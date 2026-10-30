@@ -137,7 +137,7 @@ function fillRows(rows){return rows.map(r=>{
  if(r.k==='skip')return`<div class="row skip"><div class="lab">${esc(r.id)}</div><div class="line"><span class="t"><span class="tag2 s">入れない</span>${esc(r.label.replace(/^入れない（?/,'').replace(/）$/,''))}</span></div></div>`;
  if(r.k==='action')return`<div class="row act"><div class="lab">${esc(r.id)}</div><div class="line"><span class="t"><span class="tag2 a">操作</span>${esc(r.label)}</span></div></div>`;
  return`<div class="row"><div class="lab">${esc(r.id)}${r.lines.length>1?'　（2行に分けて入れる）':''}</div>${r.lines.map((l,n)=>`<div class="line"><span class="t">${esc(l)}</span><button class="copy" data-copy="${esc(l)}" aria-label="「${esc(l)}」をコピー">コピー</button></div>`).join('')}${r.lines.length>1?'<div class="enter">1行目を入れたら Enter を押して、2行目を入れます</div>':''}${r.note?`<div class="note">※${esc(r.note)}</div>`:''}</div>`}).join('')}
-function stepBlock(c,i,s,title,inner){const k=stepKey(c,i,s),d=!!store[k];return`<section class="step${d?' done':''}" id="s-${c.key}-${i}-${s}"><header><span class="num">${d?'✓':s}</span><h4>${title}</h4><label class="ok"><input type="checkbox" data-k="${k}" ${d?'checked':''}>できた</label></header><div class="body">${inner}</div></section>`}
+function stepBlock(c,i,s,title,inner){const k=stepKey(c,i,s),d=!!store[k];return`<section class="step${d?' done':''}" id="s-${c.key}-${i}-${s}"><header><span class="num">${d?'✓':s}</span><h4>${title}</h4><label class="ok"><input type="checkbox" data-k="${k}" ${d?'checked':''}>できた</label></header><div class="body">${inner}<p class="small" style="margin-top:10px">分からない時は、ここで止まって、職員さんを呼びます。</p></div></section>`}
 function imageCard(c,im,i){
  const n=c.images.length;
  return`<article class="card" id="img-${c.key}-${i}">
